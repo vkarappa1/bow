@@ -1,15 +1,14 @@
 close all;
 clear all;
-load viru.mat;
 load caio.mat;
 
 % preprocess and smoothen the data%
-slp = data_preprocess(asl_caio, 30);
-nslp = data_preprocess(non_asl_caio, 30);
+slp = data_preprocess(asl_caio, 50);
+nslp = data_preprocess(non_asl_caio, 50);
 
 
 opts = statset('Display','final', 'MaxIter', 1000, 'UseParallel','always');
-k = 512;
+k = 32;
 slp_end = 80000;
 nslp_end = 80000;
 X = [slp(1:slp_end,1:end-1);nslp(1:nslp_end,1:end-1)];

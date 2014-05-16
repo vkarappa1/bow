@@ -2,8 +2,8 @@ close all;
 clear all;
 load caio.mat;
 
-clusters  = [8 16 32]; %number of clusters to be used%
-resolutions = [10 20 30 40 50]; %resolution of PMP%
+clusters  = [8]; %number of clusters to be used%
+resolutions = [30]; %resolution of PMP%
 slCount = 60; %count videos for training from each set%
 iterations = 100; %number of cluster and random video iterations%
 opts = statset('Display','final', 'MaxIter', 1000, 'UseParallel','always');
