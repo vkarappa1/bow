@@ -31,7 +31,6 @@ for r=1:length(resolutions) %for every resolution%
     fs = [];
   
     parfor iter=1:iterations
-      
       [slp_train, slp_test, slp_train_vids] = getRandom(slp,slCount);
       [nslp_train, nslp_test, slp_test_vids] = getRandom(nslp,slCount);
       
@@ -76,11 +75,8 @@ for r=1:length(resolutions) %for every resolution%
     f1s = [f1s mean(fs)];
   
   end
-  
   precisions_reso = [precisions_reso; precisions];
   recalls_reso = [recalls_reso; recalls];
   f1s_reso = [f1s_reso; f1s];
-
   save('results.mat', 'precisions_reso', 'recalls_reso', 'f1s_reso');
-  
 end

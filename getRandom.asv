@@ -4,8 +4,9 @@ train_vids = ids(randperm(length(ids), count));
 train = [];
 indices = [];
 test = data;
-for id=1:count
-  index = find(data(:,end) == train_vids(id));
+
+parfor id=1:train_vids
+  index = find(data(:,end) == id);
   train = [train; data(index,:)];
   indices = [indices; index];
 end
