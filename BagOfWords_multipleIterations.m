@@ -2,7 +2,7 @@ close all;
 clear all;
 load caio.mat;
 
-clusters  = [8]; %number of clusters to be used%
+clusters  = [32]; %number of clusters to be used%
 resolutions = [30]; %resolution of PMP%
 slCount = 60; %count videos for training from each set%
 iterations = 100; %number of cluster and random video iterations%
@@ -42,7 +42,9 @@ for r=1:length(resolutions) %for every resolution%
       
       %training bag of words%
       slp_train_bow = bow(slp_train(:,end),clusts_train(1:slp_end,:),k);
+      slp_train_bow = normr(slp_train_bow);
       nslp_train_bow = bow(nslp_train(:,end),clusts_train(slp_end + 1:end,:),k);
+      nslp_train_bow = normr(nslp_train_bow);
       
       %vector quanitzzation of test frames%
       clusts_slp_test = vector_quantize(slp_test(:,1:end -1), ctrs, k);
@@ -50,7 +52,9 @@ for r=1:length(resolutions) %for every resolution%
       
       %testing bag of words%
       slp_test_bow = bow(slp_test(:,end),clusts_slp_test, k);
+      slp_test_bow = normr(slp_test_bow);
       nslp_test_bow = bow(nslp_test(:,end),clusts_nslp_test, k);
+      nslp_test_bow = normr(nslp_test_bow);
       
       training = [slp_train_bow;nslp_train_bow];
       labels = [ones(size(slp_train_bow,1),1); ones(size(nslp_train_bow,1),1)*2];
